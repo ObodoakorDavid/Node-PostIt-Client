@@ -25,7 +25,7 @@ const MyStories = () => {
     } else if (location.pathname === paths.drafts) {
       setCurrentSection(paths.drafts);
     }
-  }, [location.pathname]);
+  }, [location.pathname, paths.all, paths.published, paths.drafts]);
 
   return (
     <RootLayout>
