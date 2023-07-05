@@ -1,38 +1,109 @@
+/** @format */
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Harmattan:wght@400;700&display=swap");
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+p {
+  font-family: "Open Sans", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+button {
+  font-family: "Harmattan", sans-serif !important;
+}
+
+.text-blue {
+  color: #0086b0 !important;
+}
+
+.btn-bg-main {
+  background-color: #0086b0 !important;
+}
+
+.border-main {
+  border: 1px solid #0086b0 !important ;
+}
+
+footer {
+  background-color: #292929;
+  color: #ffffff;
+}
+
+.mw-1240 {
+  max-width: 1240px;
+}
+
+.story-tags {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none !important;
+}
+
+form img {
+  top: -15px;
+  left: 8px;
+}
+
+.try-it {
+  background-image: url("./assets/images/Rectangle\ 38.png");
+}
+
+/* ====================================== */
+
+.hero_section {
+  background-image: url("./assets/images/Hero_image.png");
+  background-repeat: no-repeat;
+  background-size: 160% 100%;
+  padding: 50px 0;
+}
+
+.hero_section p {
+  width: 90%;
+  max-width: 480px;
+  line-height: 30px;
+}
+
+@media (min-width: 425px) {
+  .hero_section {
+    padding: 80px 0;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (min-width: 600px) {
+  .hero_section {
+    background-size: 140% 100%;
+    padding: 120px 0;
   }
-  to {
-    transform: rotate(360deg);
+}
+@media (min-width: 765px) {
+  .hero_section {
+    background-image: url('./assets/images/Hero_image.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 120px 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .hero_section {
+    background-image: url('./assets/images/Hero_image.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 180px 0;
   }
 }
