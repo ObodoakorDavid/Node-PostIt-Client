@@ -14,7 +14,8 @@ export const AuthProvider = ({ children }) => {
     () => JSON.parse(localStorage.getItem("token")) || null
   );
   const [authenticating, setaAuthenticating] = useState(false);
-  const baseURL = "http://localhost:3002";
+  // const baseURL = "http://localhost:3002";
+  const baseURL = "https://postitserver.onrender.com";
 
   const navigate = useNavigate();
 
