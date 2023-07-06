@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useState } from "react";
-import RootLayout from "../layouts/RootLayout";
 import editIcon from "../assets/images/edit.png";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -16,9 +15,17 @@ const CreateStory = () => {
   const [tags, setTags] = useState("");
   const [title, setTitle] = useState("");
   const [story, setStory] = useState("");
+  const [isSending, setIsSending] = useState(false);
   // ===================================
 
+  const btnText = isSending ? (
+    <span className="spinner-border spinner-border-sm text-white my-0"></span>
+  ) : (
+    "Publish Story"
+  );
+
   const handlePost = async (e) => {
+    setIsSending(true);
     e.preventDefault();
     const body = { title, tags, story };
     const response = await fetch(`${baseURL}/api/post/`, {
@@ -35,69 +42,70 @@ const CreateStory = () => {
         position: "top-right",
       });
       navigate("/my-stories");
+      setIsSending(false);
       return;
     }
     toast.error(`${data.message[0]}`, {
       position: "top-right",
     });
+    setIsSending(false);
   };
 
   return (
-    <RootLayout>
-      <div className="px-4 text-sm-start mw-1240 mx-auto">
-        <h1 className="py-3 fw-bold">Create Story</h1>
-        <form
-          onSubmit={handlePost}
-          className="d-flex flex-column gap-4 pb-5 text-start fw-semibold"
-          encType="multipart/form-data"
-        >
-          <div className=" position-relative">
-            <img
-              className=" position-absolute bg-white p-1"
-              src={editIcon}
-              alt=""
-            />
-            <input
-              className="w-100 px-4 py-2 fw-semibold border rounded-1"
-              type="text"
-              placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-          <div className="position-relative">
-            <img
-              className=" position-absolute bg-white p-1"
-              src={editIcon}
-              alt=""
-            />
-            <input
-              className="w-100 px-4 py-2 fw-semibold border rounded-1"
-              type="text"
-              placeholder="Tags"
-              value={tags}
-              onChange={(e) => setTags(e.target.value)}
-            />
-          </div>
-          <div className=" position-relative">
-            <img
-              className=" position-absolute bg-white p-1"
-              src={editIcon}
-              alt=""
-            />
-            <textarea
-              className="w-100 px-4 py-2 fw-semibold border rounded-1"
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-              placeholder="Write your story......"
-              value={story}
-              onChange={(e) => setStory(e.target.value)}
-            ></textarea>
-          </div>
-          {/* =============================== */}
-          {/* <div>
+    <div className="px-4 text-sm-start mw-1240 mx-auto">
+      <h1 className="py-3 fw-bold">Create Story</h1>
+      <form
+        onSubmit={handlePost}
+        className="d-flex flex-column gap-4 pb-5 text-start fw-semibold"
+        encType="multipart/form-data"
+      >
+        <div className=" position-relative">
+          <img
+            className=" position-absolute bg-white p-1"
+            src={editIcon}
+            alt=""
+          />
+          <input
+            className="w-100 px-4 py-2 fw-semibold border rounded-1"
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div className="position-relative">
+          <img
+            className=" position-absolute bg-white p-1"
+            src={editIcon}
+            alt=""
+          />
+          <input
+            className="w-100 px-4 py-2 fw-semibold border rounded-1"
+            type="text"
+            placeholder="Tags"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+          />
+        </div>
+        <div className=" position-relative">
+          <img
+            className=" position-absolute bg-white p-1"
+            src={editIcon}
+            alt=""
+          />
+          <textarea
+            className="w-100 px-4 py-2 fw-semibold border rounded-1"
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="Write your story......"
+            value={story}
+            onChange={(e) => setStory(e.target.value)}
+          ></textarea>
+        </div>
+        {/* =============================== */}
+        {/* <div>
             <input
               type="file"
               name=""
@@ -106,13 +114,12 @@ const CreateStory = () => {
               onChange={(e) => setImg(e.target.files[0])}
             />
           </div> */}
-          {/* ============================== */}
-          <button className="btn btn-bg-main w-50 mx-auto text-white">
-            Publish Story
-          </button>
-        </form>
-      </div>
-    </RootLayout>
+        {/* ============================== */}
+        <button className="btn btn-bg-main w-50 mx-auto text-white pt-2">
+          {btnText}
+        </button>
+      </form>
+    </div>
   );
 };
 

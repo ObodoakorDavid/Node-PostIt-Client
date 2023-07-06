@@ -29,7 +29,6 @@ export const AuthProvider = ({ children }) => {
         },
         body: JSON.stringify(body),
       });
-      console.log(response);
       let data = await response.json();
       console.log(data);
       if (data.token) {
@@ -108,15 +107,16 @@ export const AuthProvider = ({ children }) => {
 
   // =====================================================================
 
-  const logOutUser = async () => {
+  const logOutUser = () => {
     localStorage.removeItem("token");
-    setToken(null);
+    setToken(() => {
+      return null;
+    });
     setUser(null);
-    navigate("/");
     toast.success("Log Out Successfull", {
       position: "top-right",
     });
-    localStorage.setItem("loggedIn", JSON.stringify(false));
+    navigate("/");
   };
 
   const contextData = {

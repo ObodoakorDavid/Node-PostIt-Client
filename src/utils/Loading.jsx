@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { PuffLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 
 const Loading = ({ loading }) => {
   let [color] = useState("#0086b0");
@@ -12,11 +12,11 @@ const Loading = ({ loading }) => {
   };
   return (
     <div className="py-5">
-      <PuffLoader
+      <PulseLoader
         color={color}
         loading={loading}
         cssOverride={override}
-        size={150}
+        size={10}
         height={44}
         aria-label="Loading Spinner"
         data-testid="loader"

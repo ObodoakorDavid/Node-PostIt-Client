@@ -20,7 +20,7 @@ const Navbarr = () => {
           Stories
         </Link>
         <Link
-          className=" text-decoration-none text-black fw-semibold fs-4"
+          className=" text-decoration-none text-black fw-semibold fs-4 d-none d-sm-block"
           to="#"
         >
           Contact
@@ -44,7 +44,7 @@ const Navbarr = () => {
               Sign In
             </Link>
             <Link
-              className="btn btn-bg-main text-white px-3 py-1 fw-semibold fs-4"
+              className="btn btn-bg-main text-white px-3 py-1 fw-semibold fs-6"
               to="/login"
             >
               Get Started

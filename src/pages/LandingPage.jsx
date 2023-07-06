@@ -1,21 +1,18 @@
 /** @format */
 
 import React from "react";
-import RootLayout from "../layouts/RootLayout";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import Image from "../assets/images/Nature.png";
 import Loading from "../utils/Loading";
 import useAuth from "../hooks/useAuth";
 
 const LandingPage = () => {
-  // const { baseURL } = useOutletContext();
   const { baseURL } = useAuth();
-  console.log(baseURL);
   const { data, loading, error } = useFetch(`${baseURL}/api/post/`);
 
   return (
-    <RootLayout>
+    <div>
       <div className="hero_section text-start">
         <div className="mx-auto px-4 mw-1240">
           <h1 className="fw-bolder py-2">Stay Curious.</h1>
@@ -95,7 +92,7 @@ const LandingPage = () => {
           </button>
         </div>
       </div>
-    </RootLayout>
+    </div>
   );
 };
 

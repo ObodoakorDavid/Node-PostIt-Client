@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import RootLayout from "../layouts/RootLayout";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import toast from "react-hot-toast";
@@ -19,6 +18,15 @@ const EditStory = () => {
   const [tags, setTags] = useState("");
   const [story, setStory] = useState("");
 
+  const [isUpdating, setIsUpdating] = useState(false);
+  // ===================================
+
+  const btnText = isUpdating ? (
+    <span className="spinner-border spinner-border-sm text-white my-0"></span>
+  ) : (
+    "Update Story"
+  );
+
   useEffect(() => {
     if (data) {
       setTitle(data.title);
@@ -28,6 +36,7 @@ const EditStory = () => {
   }, [data]);
 
   const updateStory = async () => {
+    setIsUpdating(true);
     const body = {
       title,
       tags,
@@ -42,13 +51,13 @@ const EditStory = () => {
       body: JSON.stringify(body),
     });
     const data = await response.json();
-    console.log(data);
     if (response.ok) {
       toast.success(`${data.message}`);
       setTimeout(() => {
         navigate("/my-stories");
-      }, 1000);
+      }, 500);
     }
+    setIsUpdating(false);
   };
 
   if (loading) {
@@ -60,7 +69,7 @@ const EditStory = () => {
   }
 
   return (
-    <RootLayout>
+    <div className="pt-5">
       {data && (
         <div className="px-4 text-sm-start update-story mw-1240 mx-auto">
           <form
@@ -106,12 +115,12 @@ const EditStory = () => {
               ></textarea>
             </div>
             <button className="btn btn-bg-main w-50 mx-auto text-white">
-              Update Story
+              {btnText}
             </button>
           </form>
         </div>
       )}
-    </RootLayout>
+    </div>
   );
 };
 

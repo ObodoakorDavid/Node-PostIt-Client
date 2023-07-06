@@ -18,6 +18,7 @@ import DraftUserStories from "./components/DraftUserStories";
 import PublishedUserStories from "./components/PublishedUserStories";
 import StoryDetail from "./pages/StoryDetail";
 import Error404 from "./components/Error404";
+import RootLayout from "./layouts/RootLayout";
 
 function App() {
   return (
@@ -26,23 +27,79 @@ function App() {
       <Router>
         <AuthProvider>
           <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route
+              path="/"
+              element={
+                <RootLayout>
+                  <LandingPage />
+                </RootLayout>
+              }
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             {/* ==================================================== */}
             <Route element={<PrivateRoute />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/stories" element={<Stories />} />
-              <Route path="/my-stories" element={<MyStories />}>
+              <Route
+                path="/dashboard"
+                element={
+                  <RootLayout>
+                    <Dashboard />
+                  </RootLayout>
+                }
+              />
+              <Route
+                path="/stories"
+                element={
+                  <RootLayout>
+                    <Stories />
+                  </RootLayout>
+                }
+              />
+              <Route
+                path="/my-stories"
+                element={
+                  <RootLayout>
+                    <MyStories />
+                  </RootLayout>
+                }
+              >
                 <Route path="/my-stories" element={<AllUserStories />} />
                 <Route path="drafts" element={<DraftUserStories />} />
                 <Route path="published" element={<PublishedUserStories />} />
               </Route>
-              <Route path="/create" element={<CreateStory />} />
-              <Route path="/edit/:id" element={<EditStory />} />
-              <Route path="/story/:id" element={<StoryDetail />} />
+              <Route
+                path="/create"
+                element={
+                  <RootLayout>
+                    <CreateStory />
+                  </RootLayout>
+                }
+              />
+              <Route
+                path="/edit/:id"
+                element={
+                  <RootLayout>
+                    <EditStory />
+                  </RootLayout>
+                }
+              />
+              <Route
+                path="/story/:id"
+                element={
+                  <RootLayout>
+                    <StoryDetail />
+                  </RootLayout>
+                }
+              />
             </Route>
-            <Route path="*" element={<Error404 />} />
+            <Route
+              path="*"
+              element={
+                <RootLayout>
+                  <Error404 />
+                </RootLayout>
+              }
+            />
           </Routes>
         </AuthProvider>
       </Router>
