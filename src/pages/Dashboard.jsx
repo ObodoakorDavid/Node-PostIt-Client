@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [getUser]);
 
   return (
     <div className=" d-flex flex-column flex-lg-row gap-2 px-4 pb-4 mx-auto mw-1240">
